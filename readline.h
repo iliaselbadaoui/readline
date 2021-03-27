@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 14:25:03 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/27 15:55:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <termcap.h>
 # include <termios.h>
 # include <unistd.h>
+# include <sys/ioctl.h>
 
 /*
 * Globale variables

@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 15:25:25 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/27 16:26:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-void		concat_line(char **line, char *c)
+static void	concat_line(char **line, char *c)
 {
 	char	*tmp;
 

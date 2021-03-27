@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 14:41:04 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/27 15:25:25 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,25 @@ void		concat_line(char **line, char *c)
 
 char		*readline()
 {
-	int			done;
-	char		c;
-	char		*res;
+	int				done;
+	int				total;
+	char			*res;
 
 	done = 1;
 	res = ft_strdup("");
 	while (done)
 	{
-		c = ft_getchar();
-		if (c >= 32 && c < 127)
+		total = ft_getchar();
+		if (total >= 32 && total < 127)
 		{
-			write(1, &c, sizeof(int));
-			concat_line(&res, &c);
+			write(1, &total, sizeof(int));
+			concat_line(&res, (char *)&total);
 		}
-		if (c == ENTER)
+		if (total == KEY_UP)
+			printf("\nUP\n");
+		if (total == CTRL_D)
+			printf("\nCTRL_D\n");
+		if (total == ENTER)
 			done = 0;
 	}
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 15:55:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/27 21:43:55 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 /*
 * Globale variables
 */
-char		g_termcap_buffer[2048];
-struct termios g_init;
+char			g_termcap_buffer[2048];
+struct termios	g_init;
 /*
 * initiate termcaps
 */

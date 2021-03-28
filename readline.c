@@ -6,11 +6,30 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:07:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:35:51 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
+
+static void	load_history()
+{
+	char	*line;
+	
+	g_history_file = open(".history", O_RDONLY|O_CREAT, 0666);
+	while (in(g_history_file, &line))
+	{
+		if (*line != 0)
+			add_node(line, 1);
+		free(line);
+	}
+	if (*line != 0)
+	{
+		add_node(line, 1);
+		free(line);
+	}
+	close(g_history_file);
+}
 
 static void	concat_line(char **line, char *c)
 {
@@ -28,8 +47,9 @@ char		*readline()
 	char			*res;
 
 	done = 1;
+	if (!g_history)
+		load_history();
 	res = ft_strdup("");
-	// g_history = open("history.txt", O_RDWR|O_CREAT, 0666);
 	while (done)
 	{
 		total = ft_getchar();
@@ -45,6 +65,5 @@ char		*readline()
 		if (total == ENTER)
 			newline(res, &done);
 	}
-	// close(g_history);
 	return (res);
 }

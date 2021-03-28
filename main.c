@@ -4,6 +4,7 @@ int	main()
 {
 	char	*line;
 	init_caps();
+	g_history_file = -1;
 	while (1)
 	{
 		write(1, "minishell$ ", 11);

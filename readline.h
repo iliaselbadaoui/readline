@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:11:54 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:58:46 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define KEY_REMOVE 127
 # define KEY_TAB 9
 # define CTRL_D 4
+# define CTRL_C 3
+# define BUFFER_SIZE 4096
 # include <stdlib.h>
 # include <stdio.h>
 # include <termcap.h>

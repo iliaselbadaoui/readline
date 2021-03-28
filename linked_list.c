@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:30:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:29:54 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:17:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ t_linked	*get_next(void)
 	if (g_history->next)
 		g_history = g_history->next;
 	return (g_history);
+}
+
+void	free_linked_list()
+{
+	t_linked	*tmp;
+
+	while (g_history->prev)
+	{
+		tmp = g_history;
+		g_history = g_history->prev;
+		free(tmp->cmd);
+		free(tmp);
+	}
 }

@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   up_history.c                                       :+:      :+:    :+:   */
+/*   backspace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/28 10:08:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 17:53:12 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/28 17:38:39 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/28 17:54:12 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-void		up_history(char **line, int line_length)
+void	backspace(char **line,int line_length)
 {
-	char		*pos;
-	t_linked	*prev;
+	char	*tmp;
 
-	while (line_length)
+	if (line_length > 0)
 	{
-		pos = tgetstr("le", NULL);
-		tputs(pos, 1, move_cursor);
-		line_length--;
-	}
-	if (g_history)
-	{
-		if (!g_history_iter)
-			add_node(*line, 0);
-		free(*line);
-		prev = get_previous();
-		*line = ft_strdup(prev->cmd);
+		tmp = *line;
+		tmp[line_length - 1] = 0;
+		*line = ft_strdup(tmp);
+		free(tmp);
+		tputs(tgetstr("le", NULL), 1, move_cursor);
 		tputs(tgetstr("ce", NULL), 1, move_cursor);
-		write_to_stdout(*line);
-		g_history_iter++;
+		line_length--;
 	}
 }

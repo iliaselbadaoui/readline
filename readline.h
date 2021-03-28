@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 16:58:46 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:54:25 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int			ft_getchar(void);
 char		*readline(void);
 int			move_cursor(int d);
 void		up_history(char **line, int line_length);
+void		backspace(char **line,int line_length);
 void		down_history(char **line, int line_length);
 void		newline(char	*line, int *done);
 void		add_node(char *cmd, int already);

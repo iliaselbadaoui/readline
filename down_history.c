@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 15:06:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 17:35:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:45:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void		down_history(char **line, int line_length)
 		free(*line);
 		next = get_next();
 		*line = ft_strdup(next->cmd);
-		write_to_stdout(*line);
 		tputs(tgetstr("ce", NULL), 1, move_cursor);
+		write_to_stdout(*line);
 		g_history_iter--;
 		if (!g_history_iter)
 			free_last();

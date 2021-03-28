@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 17:35:51 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:54:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char		*readline()
 			up_history(&res, ft_strlen(res));
 		if (total == KEY_DOWN)
 			down_history(&res, ft_strlen(res));
+		if (total == KEY_REMOVE)
+			backspace(&res, ft_strlen(res));
 		if (total == ENTER)
 			newline(res, &done);
 	}

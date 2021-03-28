@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_caps.c                                        :+:      :+:    :+:   */
+/*   up_history.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 11:52:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:12:04 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/28 10:08:59 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/28 15:13:24 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-int			init_caps()
+void		up_history(char **line, int line_length)
 {
-	char	*type;
-	int		res;
+	char		*pos;
+	t_linked	*prev;
 
-	type = getenv("TERM");
-	if (!type)
+	while (line_length)
 	{
-		printf("TERM must be set (see 'env').\n");
-		return (-1);
+		pos = tgetstr("le", NULL);
+		tputs(pos, 1, move_cursor);
+		line_length--;
 	}
-	res = tgetent(NULL, type);
-	if (res == -1)
-	{
-		printf("Could not access to the termcap database..\n");
-		return (-1);
-	}
-	else if (res == 0)
-	{
-		printf("Terminal type '");
-		printf("%s", type);
-		printf("' is not defined in termcap database.\n");
-		return (-1);
-	}
-	return (0);
+	if (!g_history_iter)
+		add_node(*line, 0);
+	free(*line);
+	prev = get_previous();
+	*line = ft_strdup(prev->cmd);
+	write_to_stdout(*line);
+	tputs(tgetstr("ce", NULL), 1, move_cursor);
+	g_history_iter++;
 }

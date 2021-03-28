@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_caps.c                                        :+:      :+:    :+:   */
+/*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 11:52:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:12:04 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/28 10:11:39 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/28 13:30:51 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-int			init_caps()
+int			move_cursor(int d)
 {
-	char	*type;
-	int		res;
-
-	type = getenv("TERM");
-	if (!type)
-	{
-		printf("TERM must be set (see 'env').\n");
-		return (-1);
-	}
-	res = tgetent(NULL, type);
-	if (res == -1)
-	{
-		printf("Could not access to the termcap database..\n");
-		return (-1);
-	}
-	else if (res == 0)
-	{
-		printf("Terminal type '");
-		printf("%s", type);
-		printf("' is not defined in termcap database.\n");
-		return (-1);
-	}
-	return (0);
+	return (write(1, &d, sizeof(int)));
 }

@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_caps.c                                        :+:      :+:    :+:   */
+/*   down_history.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 11:52:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 15:12:04 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/28 15:06:25 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/28 15:28:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readline.h"
 
-int			init_caps()
+void		down_history(char **line, int line_length)
 {
-	char	*type;
-	int		res;
+	char		*pos;
+	t_linked	*next;
 
-	type = getenv("TERM");
-	if (!type)
+	while (line_length)
 	{
-		printf("TERM must be set (see 'env').\n");
-		return (-1);
+		pos = tgetstr("le", NULL);
+		tputs(pos, 1, move_cursor);
+		line_length--;
 	}
-	res = tgetent(NULL, type);
-	if (res == -1)
+	if (g_history_iter > 0)
 	{
-		printf("Could not access to the termcap database..\n");
-		return (-1);
+		free(*line);
+		next = get_next();
+		*line = ft_strdup(next->cmd);
+		write_to_stdout(*line);
+		tputs(tgetstr("ce", NULL), 1, move_cursor);
+		g_history_iter--;
 	}
-	else if (res == 0)
-	{
-		printf("Terminal type '");
-		printf("%s", type);
-		printf("' is not defined in termcap database.\n");
-		return (-1);
-	}
-	return (0);
+	if (!g_history_iter)
+		free_last();
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/27 22:04:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:07:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ static void	concat_line(char **line, char *c)
 	free(tmp);
 }
 
-static void	minishell()
-{
-	write(1, "minishell$ ", 11);
-}
-
 char		*readline()
 {
 	int				done;
@@ -34,6 +29,7 @@ char		*readline()
 
 	done = 1;
 	res = ft_strdup("");
+	// g_history = open("history.txt", O_RDWR|O_CREAT, 0666);
 	while (done)
 	{
 		total = ft_getchar();
@@ -43,9 +39,12 @@ char		*readline()
 			concat_line(&res, (char *)&total);
 		}
 		if (total == KEY_UP)
-			printf("\nUP\n");
+			up_history(&res, ft_strlen(res));
+		if (total == KEY_DOWN)
+			down_history(&res, ft_strlen(res));
 		if (total == ENTER)
-			done = 0;
+			newline(res, &done);
 	}
+	// close(g_history);
 	return (res);
 }

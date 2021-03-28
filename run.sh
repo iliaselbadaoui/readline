@@ -1,2 +1,2 @@
-gcc *.c -ltermcap
-./a.out
+gcc *.c -ltermcap -o readline
+./readline

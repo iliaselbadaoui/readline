@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:30:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 18:30:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/28 19:53:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	add_node(char *cmd, int already)
 {
 	t_linked	*tmp_prev;
 
+	if (already == 1 && *cmd == 0)
+		return ;
 	if (!g_history)
 	{
 		g_history = (t_linked *)malloc(sizeof(t_linked));

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 17:59:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:19:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static void	load_history()
 			add_node(line, 1);
 		free(line);
 	}
-	add_node(line, 1);
-	free(line);
 	close(g_history_file);
 }
 

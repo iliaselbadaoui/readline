@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 22:08:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 17:21:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:47:25 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,24 @@ static void	save_history()
 
 void		newline(char	*line, int *done)
 {
+	t_linked	*tmp;
+
+	if (g_history)
+	{
+		while ((tmp = get_previous())->prev)
+		{
+			tmp->editing = 0;
+			free(tmp->cmd_tmp);
+		}
+		while ((tmp = get_next())->next)
+		{
+			tmp->editing = 0;
+			free(tmp->cmd_tmp);
+		}
+	}
 	if (*line != '\0' && line != NULL)
 		add_node(line, 1);
 	*done = 0;
-	while (get_next()->next)
-		;
 	free_last();
 	write_to_stdout("\n");
 	g_history_iter = 0;

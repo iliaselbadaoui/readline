@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:30:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/28 19:53:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:02:24 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	add_node(char *cmd, int already)
 		g_history = (t_linked *)malloc(sizeof(t_linked));
 		g_history->cmd = ft_strdup(cmd);
 		g_history->already = already;
+		g_history->editing = 0;
+		g_history->cmd_tmp = NULL;
 		g_history->next = NULL;
 		g_history->prev = NULL;
 		return ;
@@ -34,6 +36,8 @@ void	add_node(char *cmd, int already)
 	g_history->prev = tmp_prev;
 	g_history->cmd = ft_strdup(cmd);
 	g_history->already = already;
+	g_history->editing = 0;
+	g_history->cmd_tmp = NULL;
 }
 
 void	free_last(void)

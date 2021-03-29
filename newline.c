@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 22:08:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/29 18:47:25 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/29 21:42:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ void		newline(char	*line, int *done)
 {
 	t_linked	*tmp;
 
-	if (g_history)
+	if (g_history && g_history_iter)
 	{
-		while ((tmp = get_previous())->prev)
+		while ((tmp = get_previous()))
 		{
 			tmp->editing = 0;
-			free(tmp->cmd_tmp);
+			// free(tmp->cmd_tmp);
+			if (!tmp->prev)
+				break ;
 		}
-		while ((tmp = get_next())->next)
+		while ((tmp = get_next()))
 		{
 			tmp->editing = 0;
-			free(tmp->cmd_tmp);
+			// free(tmp->cmd_tmp);
+			if (!tmp->next)
+				break ;
 		}
 	}
 	if (*line != '\0' && line != NULL)

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 10:08:59 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/30 16:35:17 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:36:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void		up_history(char **line, int line_length)
 			prev->cmd_tmp = ft_strdup(prev->cmd);
 			prev->editing = 1;
 		}
-		if (prev->cmd_tmp)
-			*line = prev->cmd_tmp;
+		*line = prev->cmd_tmp;
 		tputs(tgetstr("ce", NULL), 1, move_cursor);
 		write_to_stdout(*line);
 		g_history_iter++;

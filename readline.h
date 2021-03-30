@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/29 17:57:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/30 12:02:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_linked
 int				g_history_file;
 int				g_history_iter;
 t_linked		*g_history;
+t_linked		*g_history_the_oldest;
 /*
 * initiate termcaps
 */

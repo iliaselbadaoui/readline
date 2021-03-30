@@ -1,2 +1,2 @@
-gcc *.c -ltermcap -o readline
+gcc -Wall -Wextra -Werror *.c -ltermcap -o readline
 ./readline

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 22:08:52 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/29 21:42:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:13:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ static void	save_history()
 	t_linked	*tmp;
 	
 	g_history_file = open(".history", O_RDWR|O_CREAT, 0666);
-	tmp = g_history;
-	while (tmp->prev)
-		tmp = tmp->prev;
+	tmp = g_history_the_oldest;
 	while (tmp)
 	{
 		write(g_history_file, tmp->cmd, ft_strlen(tmp->cmd));
@@ -35,25 +33,20 @@ void		newline(char	*line, int *done)
 
 	if (g_history && g_history_iter)
 	{
-		while ((tmp = get_previous()))
+		free(g_history->cmd_tmp);
+		while (g_history->next && g_history->already)
+			g_history = g_history->next;
+		free_last();
+		tmp = g_history_the_oldest;
+		while (tmp)
 		{
 			tmp->editing = 0;
-			// free(tmp->cmd_tmp);
-			if (!tmp->prev)
-				break ;
-		}
-		while ((tmp = get_next()))
-		{
-			tmp->editing = 0;
-			// free(tmp->cmd_tmp);
-			if (!tmp->next)
-				break ;
+			tmp = tmp->next;
 		}
 	}
 	if (*line != '\0' && line != NULL)
 		add_node(line, 1);
 	*done = 0;
-	free_last();
 	write_to_stdout("\n");
 	g_history_iter = 0;
 	save_history();

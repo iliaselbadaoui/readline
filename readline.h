@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/30 12:02:39 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/31 11:25:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ typedef struct s_linked
 */
 int				g_history_file;
 int				g_history_iter;
+t_linked		*g_last;
 t_linked		*g_history;
+t_linked		*g_history_to_free;
 t_linked		*g_history_the_oldest;
 /*
 * initiate termcaps
@@ -71,7 +73,9 @@ void		backspace(char **line,int line_length);
 void		down_history(char **line, int line_length);
 void		newline(char	*line, int *done);
 void		add_node(char *cmd, int already);
+void		add_node_to_free(char *cmd);
 void		free_last(void);
+void		free_linked_list(t_linked *history);
 void		write_to_stdout(char *line);
 t_linked	*get_previous(void);
 t_linked	*get_next(void);

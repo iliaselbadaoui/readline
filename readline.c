@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:13:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/30 13:04:27 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/31 11:03:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	concat_line(char **line, char *c)
 	tmp = *line;
 	*line = ft_strjoin(*line, c);
 	free(tmp);
+	tmp = NULL;
 }
 
 char		*readline()

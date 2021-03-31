@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:30:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/30 15:58:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/31 11:36:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	free_last(void)
 	g_history = g_history->prev;
 	g_history->next = NULL;
 	free(tmp->cmd);
-	free(tmp->cmd_tmp);
 	tmp->cmd = NULL;
 	tmp->cmd_tmp = NULL;
 	free(tmp);
+	g_last = 0;
 }
 
 t_linked	*get_previous(void)
@@ -70,6 +70,8 @@ t_linked	*get_previous(void)
 
 t_linked	*get_next(void)
 {
+	if (!g_history_iter && g_history->already)
+		return (NULL);
 	if (!g_history)
 		return (NULL);
 	if (g_history->next)
@@ -77,15 +79,45 @@ t_linked	*get_next(void)
 	return (g_history);
 }
 
-void	free_linked_list()
+void	free_linked_list(t_linked *history)
 {
 	t_linked	*tmp;
 
-	while (g_history->prev)
+	while (history->prev)
 	{
-		tmp = g_history;
-		g_history = g_history->prev;
+		tmp = history;
+		history = history->prev;
 		free(tmp->cmd);
 		free(tmp);
 	}
+}
+
+void	add_node_to_free(char *cmd)
+{
+	t_linked	*tmp_prev;
+
+	if (!cmd)
+		return ;
+	if (*cmd == 0)
+		return ;
+	if (!g_history_to_free)
+	{
+		g_history_to_free = (t_linked *)malloc(sizeof(t_linked));
+		g_history_to_free->cmd = cmd;
+		g_history_to_free->already = 0;
+		g_history_to_free->editing = 0;
+		g_history_to_free->cmd_tmp = NULL;
+		g_history_to_free->next = NULL;
+		g_history_to_free->prev = NULL;
+		return ;
+	}
+	tmp_prev = g_history_to_free;
+	g_history_to_free->next = (t_linked *)malloc(sizeof(t_linked));
+	g_history_to_free = g_history_to_free->next;
+	g_history_to_free->next = NULL;
+	g_history_to_free->prev = tmp_prev;
+	g_history_to_free->cmd = cmd;
+	g_history_to_free->already = 0;
+	g_history_to_free->editing = 0;
+	g_history_to_free->cmd_tmp = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 11:49:33 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/31 11:25:31 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/04/01 09:29:30 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_linked
 	char			*cmd_tmp;
 	int				editing;
 	int				already;
+	int				is_visited;
 	struct s_linked	*next;
 	struct s_linked	*prev;
 }				t_linked;

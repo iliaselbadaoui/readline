@@ -9,6 +9,7 @@ int	main()
 	{
 		write(1, "minishell$ ", 11);
 		line = readline();
+		printf("%s\n", line);
 		free(line);
 		line = NULL;
 	}
